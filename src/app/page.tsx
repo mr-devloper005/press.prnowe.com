@@ -111,14 +111,14 @@ function getDirectoryTone(brandPack: string) {
 
 function getEditorialTone() {
   return {
-    shell: 'bg-[#fbf6ee] text-[#241711]',
-    panel: 'border border-[#dcc8b7] bg-[#fffdfa] shadow-[0_24px_60px_rgba(77,47,27,0.08)]',
-    soft: 'border border-[#e6d6c8] bg-[#fff4e8]',
-    muted: 'text-[#6e5547]',
-    title: 'text-[#241711]',
-    badge: 'bg-[#241711] text-[#fff1e2]',
-    action: 'bg-[#241711] text-[#fff1e2] hover:bg-[#3a241b]',
-    actionAlt: 'border border-[#dcc8b7] bg-transparent text-[#241711] hover:bg-[#f5e7d7]',
+    shell: 'bg-[#F5F1F8] text-[#432E54]',
+    panel: 'border border-[#D4C4DC] bg-[#FDFBFE] shadow-[0_24px_60px_rgba(67,46,84,0.08)]',
+    soft: 'border border-[#E8D8F0] bg-[#F9F5FB]',
+    muted: 'text-[#7D6B8F]',
+    title: 'text-[#432E54]',
+    badge: 'bg-[#432E54] text-[#F5F1F8]',
+    action: 'bg-[#432E54] text-[#F5F1F8] hover:bg-[#5A4270]',
+    actionAlt: 'border border-[#D4C4DC] bg-transparent text-[#432E54] hover:bg-[#E8D8F0]',
   }
 }
 
@@ -169,27 +169,27 @@ function DirectoryHome({ primaryTask, enabledTasks, listingPosts, classifiedPost
             <div>
               <span className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] ${tone.badge}`}>
                 <Compass className="h-3.5 w-3.5" />
-                Local discovery product
+                Media press center
               </span>
               <h1 className={`mt-6 max-w-4xl text-5xl font-semibold tracking-[-0.06em] sm:text-6xl ${tone.title}`}>
-                Search businesses, compare options, and act fast without digging through generic feeds.
+                Corporate announcements that reach journalists, investors, and market participants.
               </h1>
               <p className={`mt-6 max-w-2xl text-base leading-8 ${tone.muted}`}>{SITE_CONFIG.description}</p>
 
               <div className={`mt-8 grid gap-3 rounded-[2rem] p-4 ${tone.panel} md:grid-cols-[1.25fr_0.8fr_auto]`}>
-                <div className="rounded-full bg-black/5 px-4 py-3 text-sm">What do you need today?</div>
-                <div className="rounded-full bg-black/5 px-4 py-3 text-sm">Choose area or city</div>
+                <div className="rounded-full bg-black/5 px-4 py-3 text-sm">Search by topic or company</div>
+                <div className="rounded-full bg-black/5 px-4 py-3 text-sm">Filter by date or category</div>
                 <Link href={primaryTask?.route || '/listings'} className={`inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold ${tone.action}`}>
-                  Browse now
+                  View newsroom
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
 
               <div className="mt-8 grid gap-3 sm:grid-cols-3">
                 {[
-                  ['Verified businesses', `${featuredListings.length || 3}+ highlighted surfaces`],
-                  ['Fast scan rhythm', 'More utility, less filler'],
-                  ['Action first', 'Call, visit, shortlist, compare'],
+                  ['Wire-service quality', 'Professional formatting and metadata'],
+                  ['Full discoverability', 'Search, filter, and archive releases'],
+                  ['Media ready', 'Verified contacts, quotes, and assets'],
                 ].map(([label, value]) => (
                   <div key={label} className={`rounded-[1.4rem] p-4 ${tone.soft}`}>
                     <p className="text-[11px] font-semibold uppercase tracking-[0.22em] opacity-70">{label}</p>
@@ -203,12 +203,12 @@ function DirectoryHome({ primaryTask, enabledTasks, listingPosts, classifiedPost
               <div className={`rounded-[2rem] p-6 ${tone.panel}`}>
                 <div className="flex items-center justify-between gap-4">
                   <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.22em] opacity-70">Primary lane</p>
-                    <h2 className="mt-2 text-3xl font-semibold">{primaryTask?.label || 'Listings'}</h2>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.22em] opacity-70">Featured content</p>
+                    <h2 className="mt-2 text-3xl font-semibold">{primaryTask?.label || 'Press Releases'}</h2>
                   </div>
                   <ShieldCheck className="h-6 w-6" />
                 </div>
-                <p className={`mt-4 text-sm leading-7 ${tone.muted}`}>{primaryTask?.description || 'Structured discovery for services, offers, and business surfaces.'}</p>
+                <p className={`mt-4 text-sm leading-7 ${tone.muted}`}>{primaryTask?.description || 'Professional announcements with verified media contacts and distribution metadata.'}</p>
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2">
@@ -231,10 +231,10 @@ function DirectoryHome({ primaryTask, enabledTasks, listingPosts, classifiedPost
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="flex items-end justify-between gap-4 border-b border-border pb-6">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">Featured businesses</p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em]">Strong listings with clearer trust cues.</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">Featured announcements</p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em]">Latest press releases from our newsroom.</h2>
           </div>
-          <Link href="/listings" className="text-sm font-semibold text-primary hover:opacity-80">Open listings</Link>
+          <Link href="/press" className="text-sm font-semibold text-primary hover:opacity-80">View all releases</Link>
         </div>
         <div className="mt-8 grid gap-6 lg:grid-cols-3">
           {featuredListings.map((post) => (
@@ -246,12 +246,12 @@ function DirectoryHome({ primaryTask, enabledTasks, listingPosts, classifiedPost
       <section className={`${tone.shell}`}>
         <div className="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8">
           <div className={`rounded-[2rem] p-7 ${tone.panel}`}>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] opacity-70">What makes this different</p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em]">Built like a business directory, not a recolored content site.</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] opacity-70">Built for communications teams</p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em]">Professional wire-service distribution, not a generic content template.</h2>
             <ul className={`mt-6 space-y-3 text-sm leading-7 ${tone.muted}`}>
-              <li>Search-first hero instead of a magazine headline.</li>
-              <li>Action-oriented listing cards with trust metadata.</li>
-              <li>Support lanes for offers, businesses, and profiles.</li>
+              <li>Wire-formatted releases with verified media contacts and distribution tracking.</li>
+              <li>Full-text search with category filters, datelines, and archive access.</li>
+              <li>Newsroom rhythm built on investor relations and corporate communications standards.</li>
             </ul>
           </div>
           <div className="grid gap-4 md:grid-cols-2">

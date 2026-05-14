@@ -1,6 +1,6 @@
 export const siteIdentity = {
   code: process.env.NEXT_PUBLIC_SITE_CODE || 'ktch1a2skv',
-  name: process.env.NEXT_PUBLIC_SITE_NAME || 'Press Prnowe',
+  name: process.env.NEXT_PUBLIC_SITE_NAME || 'press.prnowe',
   tagline: process.env.NEXT_PUBLIC_SITE_TAGLINE || 'Independent media updates',
   description:
     process.env.NEXT_PUBLIC_SITE_DESCRIPTION ||

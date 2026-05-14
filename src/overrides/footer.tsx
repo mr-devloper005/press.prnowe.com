@@ -39,7 +39,7 @@ export function FooterOverride() {
   const primaryLabel = primary?.label || 'Press room'
 
   return (
-    <footer className="border-t border-white/5 bg-[#1a0f24] text-white">
+    <footer className="border-t border-white/5 bg-[#2D1F3D] text-white">
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
         <div className="grid gap-10 md:grid-cols-[1.2fr_1fr_1fr_1fr]">
           <div>
@@ -57,7 +57,7 @@ export function FooterOverride() {
           </div>
           {cols(primaryHref, primaryLabel).map((col) => (
             <div key={col.title}>
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-[#c4b0d4]">{col.title}</h3>
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-[#D4C4DC]">{col.title}</h3>
               <ul className="mt-4 space-y-2.5">
                 {col.links.map((l) => (
                   <li key={l.href}>

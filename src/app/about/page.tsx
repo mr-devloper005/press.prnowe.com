@@ -46,7 +46,7 @@ export default function AboutPage() {
   return (
     <PageShell
       title="About us"
-      description="24x7newspress.com is a media distribution and reading experience designed for public announcements—not generic marketing sites."
+      description="press.prnowe.com is a media distribution and reading experience designed for public announcements—not generic marketing sites."
       actions={
         <Button asChild className="rounded-full bg-[#da4848] px-5 hover:bg-[#c23d3d]">
           <Link href="/contact">Contact the desk</Link>
