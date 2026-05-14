@@ -42,12 +42,12 @@ const variantClasses = {
     mobile: 'border-t border-slate-200/70 bg-white/95',
   },
   'editorial-bar': {
-    shell: 'border-b border-[#d7c4b3] bg-[#fff7ee]/90 text-[#2f1d16] backdrop-blur-xl',
-    logo: 'rounded-full border border-[#dbc6b6] bg-white shadow-sm',
-    active: 'bg-[#2f1d16] text-[#fff4e4]',
-    idle: 'text-[#72594a] hover:bg-[#f2e5d4] hover:text-[#2f1d16]',
-    cta: 'rounded-full bg-[#2f1d16] text-[#fff4e4] hover:bg-[#452920]',
-    mobile: 'border-t border-[#dbc6b6] bg-[#fff7ee]',
+    shell: 'border-b border-[#C9B8D4] bg-[#F5F1F8]/90 text-[#432E54] backdrop-blur-xl',
+    logo: 'rounded-full border border-[#D4C4DC] bg-white shadow-sm',
+    active: 'bg-[#432E54] text-[#F5F1F8]',
+    idle: 'text-[#7D6B8F] hover:bg-[#E8D8F0] hover:text-[#432E54]',
+    cta: 'rounded-full bg-[#432E54] text-[#F5F1F8] hover:bg-[#5A4270]',
+    mobile: 'border-t border-[#D4C4DC] bg-[#F5F1F8]',
   },
   'floating-bar': {
     shell: 'border-b border-transparent bg-transparent text-white',
