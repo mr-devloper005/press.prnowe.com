@@ -78,8 +78,8 @@ export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata({
     path: '/pricing',
     title: 'Pricing & plans',
-    description: '24x7newspress.com distribution and analytics plans for media teams.',
-    openGraphTitle: 'Pricing & plans | 24x7newspress.com',
+    description: 'press.prnowe.com distribution and analytics plans for media teams.',
+    openGraphTitle: 'Pricing & plans | press.prnowe.com',
     openGraphDescription: 'Basic, Pro, and Premium options with clear distribution and analytics tiers.',
     image: SITE_CONFIG.defaultOgImage,
     keywords: ['PR pricing', 'press release cost', 'distribution plans', 'media analytics'],

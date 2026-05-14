@@ -25,8 +25,8 @@ export function NavbarOverride() {
   const primary = SITE_CONFIG.tasks.find((t) => t.enabled) || SITE_CONFIG.tasks[0]
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#36064d] text-white shadow-md shadow-[#1a0f24]/20">
-      <div className="border-b border-white/5 bg-[#2d0550]/80 text-[12px]">
+    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#4B4376] text-white shadow-md shadow-[#2D1F3D]/20">
+      <div className="border-b border-white/5 bg-[#3D2A4D]/80 text-[12px]">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-4 py-2 sm:px-6">
           <p className="text-white/75">{siteContent.navbar.tagline}</p>
           <div className="flex flex-wrap items-center gap-3 sm:gap-4">
@@ -39,7 +39,7 @@ export function NavbarOverride() {
             ) : (
               <>
                 <Link href="/login" className="text-white/80 hover:text-white">Sign in</Link>
-                <Link href="/register" className="font-semibold text-[#fecaca] hover:text-white">Create account</Link>
+                <Link href="/register" className="font-semibold text-[#F2C9C6] hover:text-white">Create account</Link>
               </>
             )}
           </div>
@@ -77,7 +77,7 @@ export function NavbarOverride() {
         <div className="hidden items-center gap-2 md:flex">
           <Button
             asChild
-            className="rounded-full border-0 bg-[#da4848] px-5 text-white shadow-sm hover:bg-[#c23d3d]"
+            className="rounded-full border-0 bg-[#AE445A] px-5 text-white shadow-sm hover:bg-[#964254]"
           >
             <Link href="/contact">Submit news</Link>
           </Button>
@@ -96,7 +96,7 @@ export function NavbarOverride() {
       </div>
 
       {open ? (
-        <div className="border-t border-white/10 bg-[#2d0550] px-4 py-4 md:hidden">
+        <div className="border-t border-white/10 bg-[#3D2A4D] px-4 py-4 md:hidden">
           <div className="mx-auto flex max-w-6xl flex-col gap-1">
             {mainNav.map((item) => (
               <Link
@@ -109,7 +109,7 @@ export function NavbarOverride() {
               </Link>
             ))}
             <Link href="/search" className="rounded-lg px-3 py-3 text-sm" onClick={() => setOpen(false)}>Search</Link>
-            <Button asChild className="mt-2 w-full rounded-full bg-[#da4848] text-white">
+            <Button asChild className="mt-2 w-full rounded-full bg-[#AE445A] text-white">
               <Link href="/contact" onClick={() => setOpen(false)}>Submit news</Link>
             </Button>
           </div>
