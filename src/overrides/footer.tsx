@@ -18,7 +18,6 @@ const cols = (primaryHref: string, primaryLabel: string) => [
     links: [
       { label: 'About us', href: '/about' },
       { label: 'Contact', href: '/contact' },
-      { label: 'Press kit', href: '/press' },
     ],
   },
   {
@@ -39,21 +38,33 @@ export function FooterOverride() {
   const primaryLabel = primary?.label || 'Press room'
 
   return (
-    <footer className="border-t border-white/5 bg-[#2D1F3D] text-white">
+    <footer className="border-t text-white" style={{ borderColor: 'rgba(218,72,72,0.15)', background: 'linear-gradient(180deg, #1a0f24 0%, #0d0818 100%)' }}>
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
         <div className="grid gap-10 md:grid-cols-[1.2fr_1fr_1fr_1fr]">
           <div>
-            <div className="flex items-center gap-2">
-              <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/5 text-xs font-bold">24</span>
+            {/* logo — matches header */}
+            <div className="flex items-center gap-3">
+              <span
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-black text-white"
+                style={{
+                  background: 'linear-gradient(135deg, #da4848 0%, #a83030 100%)',
+                  boxShadow: '0 0 0 2px rgba(218,72,72,0.25), 0 4px 12px rgba(218,72,72,0.3)',
+                }}
+              >
+                P
+              </span>
               <div>
-                <p className="text-lg font-semibold">{SITE_CONFIG.name}</p>
-                <p className="text-xs text-white/55">{siteContent.footer.tagline}</p>
+                <p className="text-lg font-black leading-tight tracking-tight text-white" style={{ fontFamily: 'var(--font-sans, system-ui, sans-serif)' }}>
+                  {SITE_CONFIG.name}
+                </p>
+                <p className="text-[9px] font-bold uppercase tracking-[0.28em] text-white/40" style={{ fontFamily: 'var(--font-sans, system-ui, sans-serif)' }}>
+                  Press wire
+                </p>
               </div>
             </div>
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/65">
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/55">
               {SITE_CONFIG.description}
             </p>
-
           </div>
           {cols(primaryHref, primaryLabel).map((col) => (
             <div key={col.title}>
