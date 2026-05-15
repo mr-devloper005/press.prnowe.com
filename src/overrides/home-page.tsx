@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, BarChart3, Check, Radio, Shield, Sparkles, TrendingUp } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, BarChart2, Globe, Radio, Shield, TrendingUp, Zap } from 'lucide-react'
 import { NavbarShell } from '@/components/shared/navbar-shell'
 import { Footer } from '@/components/shared/footer'
 import { fetchTaskPosts } from '@/lib/task-data'
@@ -15,29 +15,8 @@ export const HOME_PAGE_OVERRIDE_ENABLED = true
 
 const heroImage =
   'https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=2000&q=80'
-const solutionsImage =
+const editorialImage =
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1600&q=80'
-const storiesBand =
-  'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=2000&q=80'
-
-const apartItems = [
-  {
-    title: 'Wire-native presentation',
-    body: 'Releases are formatted for datelines, quotes, and long bodies—so readers get the same confidence they expect from major wires.',
-  },
-  {
-    title: 'Distribution-minded metadata',
-    body: 'Tags, categories, and summaries stay visible in list views to help journalists and analysts triage fast.',
-  },
-  {
-    title: 'Search that respects context',
-    body: 'Headline and body search is tuned for corporate language, not social noise—so results stay on mission.',
-  },
-  {
-    title: 'A brand frame that is yours',
-    body: 'Deep purple foundations and crimson actions create a distinct press identity instead of a recycled blog skin.',
-  },
-]
 
 const solutions = [
   {
@@ -48,12 +27,27 @@ const solutions = [
   {
     title: 'Analytics-ready pages',
     body: 'Each URL is a stable asset for monitoring pickup, referrers, and engagement over time.',
-    icon: BarChart3,
+    icon: BarChart2,
   },
   {
     title: 'Trust & compliance tone',
     body: 'Layout choices prioritize clarity and sourcing—ideal for regulated industries and IR teams.',
     icon: Shield,
+  },
+  {
+    title: 'Global reach',
+    body: 'Structured metadata and open formats ensure your releases are indexed and discoverable worldwide.',
+    icon: Globe,
+  },
+  {
+    title: 'Instant publishing',
+    body: 'From draft to live in seconds. No queues, no delays—your news moves at the speed of the market.',
+    icon: Zap,
+  },
+  {
+    title: 'Wire-native format',
+    body: 'Datelines, quotes, and long bodies formatted exactly as journalists and analysts expect.',
+    icon: TrendingUp,
   },
 ]
 
@@ -76,232 +70,258 @@ function getCategory(post: SitePost) {
 export async function HomePageOverride() {
   const posts = await fetchTaskPosts('mediaDistribution', 18, { allowMockFallback: true, fresh: true, revalidate: 120 })
   const featured = posts[0]
-  const featuredStories = posts.slice(0, 5)
+  const featuredStories = posts.slice(1, 4)
   const browse = posts.slice(0, 8)
   const taskRoute = SITE_CONFIG.tasks[0]?.route || '/updates'
 
   return (
-    <div className="min-h-screen text-[#432E54]">
+    <div className="min-h-screen text-[#1a0f24]">
       <NavbarShell />
-      <main className="bg-gradient-to-b from-[#f5f1f8] via-white to-[#f3ebf5] text-[#432E54]">
-        <section className="relative overflow-hidden border-b border-[#4B4376]/10 bg-[#2D1F3D] text-white">
+      <main>
+
+        {/* ── HERO ── */}
+        <section className="relative overflow-hidden" style={{ backgroundColor: '#1a0f24' }}>
+          <div className="absolute inset-0 z-0" style={{ backgroundColor: '#1a0f24' }} />
           <Image
             src={heroImage}
             alt=""
             fill
             priority
-            className="object-cover opacity-45"
+            className="object-cover opacity-20"
             sizes="100vw"
+            style={{ zIndex: 1 }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#4B4376]/95 via-[#4B4376]/80 to-[#2D1F3D]/25" />
-          <div className="relative z-10 mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:py-28">
-            <p className="pr-motion-rise inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/90">
-              <Sparkles className="h-3.5 w-3.5" />
-              {siteContent.hero.badge}
-            </p>
-            <h1 className="pr-motion-rise pr-motion-delay-1 mt-6 max-w-3xl text-4xl font-semibold leading-[1.12] tracking-tight sm:text-5xl lg:text-[3.15rem]">
-              {siteContent.hero.title[0]}
-            </h1>
-            <p className="pr-motion-rise pr-motion-delay-2 mt-6 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">
-              {siteContent.hero.description}
-            </p>
-            <div className="pr-motion-rise pr-motion-delay-3 mt-10 flex flex-wrap gap-3">
-              <Link
-                href={siteContent.hero.primaryCta.href}
-                className="inline-flex items-center gap-2 rounded-full bg-[#AE445A] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#AE445A]/20 transition hover:bg-[#964254]"
-              >
-                {siteContent.hero.primaryCta.label}
-                <ArrowRight className="h-4 w-4" />
+          <div className="absolute inset-0" style={{ zIndex: 2, background: 'linear-gradient(135deg, #1a0f24 0%, rgba(45,26,58,0.97) 60%, rgba(54,6,77,0.85) 100%)' }} />
+          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#da4848]/60 to-transparent" style={{ zIndex: 3 }} />
+
+          <div className="relative mx-auto max-w-7xl px-6 pb-24 pt-20 lg:pb-32 lg:pt-28" style={{ zIndex: 4 }}>
+            {/* live badge */}
+            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-[#da4848]/40 bg-[#da4848]/10 px-3 py-1">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#da4848]" />
+              <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#da4848]">
+                {siteContent.hero.badge}
+              </span>
+            </div>
+
+            <div className="grid gap-12 lg:grid-cols-[1fr_400px] lg:items-end">
+              <div>
+                <h1 className="text-5xl font-black leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-[4rem]">
+                  {siteContent.hero.title[0]}
+                </h1>
+                <p className="mt-6 max-w-xl text-base leading-relaxed text-white/60 sm:text-lg">
+                  {siteContent.hero.description}
+                </p>
+                <div className="mt-10 flex flex-wrap items-center gap-4">
+                  <Link
+                    href={siteContent.hero.primaryCta.href}
+                    className="inline-flex items-center gap-2 rounded-full bg-[#da4848] px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-[#da4848]/25 transition hover:bg-[#c23d3d]"
+                  >
+                    {siteContent.hero.primaryCta.label}
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link
+                    href="/about"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-white/60 transition hover:text-white"
+                  >
+                    Learn more <ArrowUpRight className="h-4 w-4" />
+                  </Link>
+                </div>
+              </div>
+
+              {/* wire desk card */}
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
+                <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">Wire desk</p>
+                <div className="space-y-4">
+                  <div className="border-b border-white/10 pb-4">
+                    <p className="text-[11px] font-semibold uppercase tracking-wider text-[#da4848]">Primary desk</p>
+                    <p className="mt-1 text-base font-bold text-white">{SITE_CONFIG.tasks[0]?.label}</p>
+                    <p className="mt-1 text-sm text-white/55">{SITE_CONFIG.tasks[0]?.description}</p>
+                  </div>
+                  <div>
+                    <p className="text-[11px] font-semibold uppercase tracking-wider text-white/40">Quick access</p>
+                    <div className="mt-3 flex flex-col gap-2">
+                      <Link href={taskRoute} className="flex items-center justify-between text-sm text-white/70 transition hover:text-white">
+                        <span>Latest releases</span><ArrowUpRight className="h-3.5 w-3.5" />
+                      </Link>
+                      <Link href="/search" className="flex items-center justify-between text-sm text-white/70 transition hover:text-white">
+                        <span>Search archive</span><ArrowUpRight className="h-3.5 w-3.5" />
+                      </Link>
+                      <Link href="/contact" className="flex items-center justify-between text-sm text-white/70 transition hover:text-white">
+                        <span>Media contact</span><ArrowUpRight className="h-3.5 w-3.5" />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── TICKER BAR ── */}
+        <div className="border-b border-[#36064d]/15 bg-[#36064d]">
+          <div className="mx-auto flex max-w-7xl items-center gap-6 overflow-hidden px-6 py-2.5">
+            <span className="shrink-0 rounded-full bg-[#da4848] px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-white">
+              Live
+            </span>
+            <div className="flex gap-8 overflow-x-auto">
+              {trendingSlugs.map((slug) => {
+                const name = CATEGORY_OPTIONS.find((c) => c.slug === slug)?.name || slug
+                return (
+                  <Link
+                    key={slug}
+                    href={`${taskRoute}?category=${encodeURIComponent(slug)}`}
+                    className="shrink-0 text-[11px] font-semibold uppercase tracking-wider text-white/50 transition hover:text-white"
+                  >
+                    {name}
+                  </Link>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* ── FEATURED STORIES ── */}
+        <section className="bg-white">
+          <div className="mx-auto max-w-7xl px-6 py-16 lg:py-20">
+            <div className="mb-10 flex items-end justify-between border-b-2 border-[#1a0f24] pb-3">
+              <h2 className="text-2xl font-black uppercase tracking-tight text-[#1a0f24]">Featured stories</h2>
+              <Link href={taskRoute} className="flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-[#da4848] hover:underline">
+                All releases <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
-            <div className="pr-motion-rise pr-motion-delay-4 mt-12 grid max-w-lg gap-3 sm:grid-cols-2">
-              <div className="rounded-2xl border border-white/15 bg-white/5 p-4">
-                <p className="text-[11px] font-semibold uppercase tracking-wider text-white/60">Primary desk</p>
-                <p className="mt-1 text-lg font-semibold">{SITE_CONFIG.tasks[0]?.label}</p>
-                <p className="mt-1 text-sm text-white/70">{SITE_CONFIG.tasks[0]?.description}</p>
-              </div>
-              <div className="rounded-2xl border border-white/15 bg-white/5 p-4">
-                <p className="text-[11px] font-semibold uppercase tracking-wider text-white/60">Also explore</p>
-                <p className="mt-1 text-sm text-white/80">Company and help stay one click away in the main navigation.</p>
-                <Link href="/search" className="mt-3 inline-flex text-sm font-semibold text-[#F2C9C6] hover:text-white">
-                  Open search
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
 
-        <section className="w-full border-b border-[#E8BCB9]/80 bg-white/95">
-          <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-            <div>
-              <h2 className="text-3xl font-semibold tracking-tight text-[#432E54] sm:text-4xl">
-                What sets {SITE_CONFIG.name} apart
-              </h2>
-              <p className="mt-3 max-w-xl text-sm leading-7 text-[#6B5F7D]">
-                A press portal should feel like infrastructure—not a marketing theme. We designed spacing, type, and section rhythm for release-heavy teams.
+            {!featured && featuredStories.length === 0 ? (
+              <p className="py-12 text-center text-sm text-[#5c4d6a]">
+                Releases will appear here once published.{' '}
+                <Link href={taskRoute} className="font-semibold text-[#da4848] hover:underline">Open the archive</Link>
               </p>
-              <ul className="mt-8 space-y-4">
-                {apartItems.map((item) => (
-                  <li key={item.title} className="flex gap-3">
-                    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#AE445A]/12 text-[#AE445A]">
-                      <Check className="h-3.5 w-3.5" strokeWidth={2.5} />
-                    </span>
-                    <div>
-                      <p className="font-semibold text-[#432E54]">{item.title}</p>
-                      <p className="mt-1 text-sm text-[#6B5F7D]">{item.body}</p>
+            ) : (
+              <div className="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
+                {/* main featured */}
+                {featured && (
+                  <Link
+                    href={buildPostUrl('mediaDistribution', featured.slug)}
+                    className="group relative overflow-hidden rounded-2xl"
+                  >
+                    <div className="relative aspect-[16/9] overflow-hidden rounded-2xl">
+                      <Image
+                        src={getPostImage(featured)}
+                        alt=""
+                        fill
+                        className="object-cover transition duration-500 group-hover:scale-[1.03]"
+                        sizes="(max-width:1024px) 100vw, 60vw"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#1a0f24]/90 via-[#1a0f24]/30 to-transparent" />
                     </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-[#4B4376]/15 shadow-[0_20px_50px_rgba(75,67,118,0.08)]">
-              <Image src={solutionsImage} alt="" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 40vw" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#2D1F3D]/80 via-[#4B4376]/20 to-transparent" />
-              <p className="absolute bottom-4 left-4 right-4 text-sm font-medium text-white drop-shadow">Editorial control rooms still matter—tools should match the seriousness of the announcement.</p>
-            </div>
-          </div>
+                    <div className="absolute bottom-0 left-0 right-0 p-6">
+                      <span className="inline-block rounded-full bg-[#da4848] px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">
+                        {getCategory(featured)}
+                      </span>
+                      <h3 className="mt-2 text-xl font-black leading-tight text-white transition group-hover:text-[#f2c9c6] sm:text-2xl">
+                        {featured.title}
+                      </h3>
+                      {featured.summary && (
+                        <p className="mt-2 line-clamp-2 text-sm text-white/70">{featured.summary}</p>
+                      )}
+                    </div>
+                  </Link>
+                )}
+
+                {/* side stories */}
+                <div className="flex flex-col gap-4">
+                  {featuredStories.map((post) => (
+                    <Link
+                      key={post.id}
+                      href={buildPostUrl('mediaDistribution', post.slug)}
+                      className="group flex gap-4 border-b border-[#dcd3e4] pb-4 last:border-0 last:pb-0"
+                    >
+                      <div className="relative h-20 w-28 shrink-0 overflow-hidden rounded-xl bg-[#ede8f2]">
+                        <Image
+                          src={getPostImage(post)}
+                          alt=""
+                          fill
+                          className="object-cover transition duration-300 group-hover:scale-105"
+                          sizes="112px"
+                        />
+                      </div>
+                      <div className="flex flex-col justify-center">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-[#da4848]">
+                          {getCategory(post)}
+                        </span>
+                        <p className="mt-1 line-clamp-2 text-sm font-bold leading-snug text-[#1a0f24] transition group-hover:text-[#da4848]">
+                          {post.title}
+                        </p>
+                      </div>
+                    </Link>
+                  ))}
+                  <Link
+                    href={taskRoute}
+                    className="mt-auto inline-flex items-center gap-2 rounded-full border-2 border-[#1a0f24] px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-[#1a0f24] transition hover:bg-[#1a0f24] hover:text-white"
+                  >
+                    View all releases <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
+                </div>
+              </div>
+            )}
           </div>
         </section>
 
-        <section className="w-full border-y border-[#E8BCB9] bg-gradient-to-b from-[#F8F4FC] to-white">
-          <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <h2 className="text-3xl font-semibold tracking-tight text-[#432E54]">Featured solutions</h2>
-                <p className="mt-2 max-w-2xl text-sm text-[#6B5F7D]">How teams use {SITE_CONFIG.name} to structure outbound communications and on-site reading.</p>
-              </div>
+        {/* ── SOLUTIONS GRID ── */}
+        <section className="bg-[#f6f3f8]">
+          <div className="mx-auto max-w-7xl px-6 py-16 lg:py-20">
+            <div className="mb-10 border-b-2 border-[#1a0f24] pb-3">
+              <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.25em] text-[#da4848]">Platform</p>
+              <h2 className="text-2xl font-black uppercase tracking-tight text-[#1a0f24]">
+                Built for press professionals
+              </h2>
             </div>
-            <div className="mt-10 grid gap-6 md:grid-cols-3">
+            <div className="grid gap-px bg-[#dcd3e4] sm:grid-cols-2 lg:grid-cols-3">
               {solutions.map(({ title, body, icon: Icon }) => (
                 <div
                   key={title}
-                  className="group rounded-2xl border border-[#E8D8F0] bg-white p-6 shadow-[0_8px_30px_rgba(75,67,118,0.06)] transition hover:-translate-y-0.5 hover:border-[#AE445A]/25 hover:shadow-[0_12px_36px_rgba(75,67,118,0.1)]"
+                  className="group bg-[#f6f3f8] p-6 transition hover:bg-white"
                 >
-                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#432E54] text-white shadow-sm">
-                    <Icon className="h-5 w-5" />
+                  <div className="mb-4 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[#36064d] text-white">
+                    <Icon className="h-4 w-4" />
                   </div>
-                  <h3 className="mt-5 text-lg font-semibold text-[#432E54]">{title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[#6B5F7D]">{body}</p>
+                  <h3 className="text-sm font-black uppercase tracking-wide text-[#1a0f24]">{title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[#5c4d6a]">{body}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="relative overflow-hidden border-b border-[#4B4376]/15 text-white">
-          <div className="absolute inset-0 z-0">
-            <Image
-              src={storiesBand}
-              alt=""
-              fill
-              className="object-cover"
-              sizes="100vw"
-            />
-            <div
-              className="absolute inset-0 bg-gradient-to-r from-[#2D1F3D]/95 via-[#4B4376]/88 to-[#3D2A4D]/80"
-              aria-hidden
-            />
-          </div>
-          <div className="relative z-10 mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
-            <h2 className="text-3xl font-semibold">Featured stories</h2>
-            <p className="mt-2 text-sm text-white/75">Latest items from the wire—updated from your live feed when connected.</p>
-            {featuredStories.length === 0 ? (
-              <p className="mt-10 rounded-2xl border border-white/15 bg-white/5 p-8 text-sm text-white/80">
-                Releases will appear here when they are published to your press room.
-                <Link href={taskRoute} className="ml-2 font-semibold text-[#F2C9C6] underline-offset-2 hover:underline">
-                  Open the archive
-                </Link>
-              </p>
-            ) : (
-              <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {featuredStories.slice(0, 3).map((post) => (
-                  <Link
-                    key={post.id}
-                    href={buildPostUrl('mediaDistribution', post.slug)}
-                    className="group overflow-hidden rounded-2xl border border-white/20 bg-white/8 backdrop-blur-sm transition hover:border-[#F2C9C6]/50 hover:bg-white/12"
-                  >
-                    <div className="relative aspect-[16/10]">
-                      <Image src={getPostImage(post)} alt="" fill className="object-cover transition duration-500 group-hover:scale-[1.03]" sizes="(max-width:768px) 100vw, 33vw" />
-                    </div>
-                    <div className="p-4">
-                      <p className="text-[11px] font-semibold uppercase tracking-wider text-white/50">{getCategory(post)}</p>
-                      <p className="mt-1 font-medium leading-snug text-white group-hover:text-[#F2C9C6]">{post.title}</p>
-                    </div>
-                  </Link>
-                ))}
-                {featuredStories.length > 3
-                  ? featuredStories.slice(3, 5).map((post) => (
-                    <Link
-                      key={post.id}
-                      href={buildPostUrl('mediaDistribution', post.slug)}
-                      className="flex flex-col justify-center rounded-2xl border border-white/10 bg-white/5 p-5 transition hover:border-white/20"
-                    >
-                      <p className="text-[11px] text-white/55">{getCategory(post)}</p>
-                      <p className="mt-1 font-medium text-white">{post.title}</p>
-                      {post.summary ? <p className="mt-2 line-clamp-3 text-sm text-white/65">{post.summary}</p> : null}
-                    </Link>
-                  ))
-                  : null}
-              </div>
-            )}
-            {featured ? (
-              <div className="mt-10 max-w-3xl rounded-2xl border border-white/10 bg-black/20 p-6 sm:p-8">
-                <p className="text-xs font-semibold uppercase tracking-wider text-[#F2C9C6]">Spotlight</p>
-                <h3 className="mt-2 text-2xl font-semibold text-white sm:text-3xl">{featured.title}</h3>
-                {featured.summary ? <p className="mt-3 text-sm leading-relaxed text-white/80">{featured.summary}</p> : null}
-                <Link
-                  href={buildPostUrl('mediaDistribution', featured.slug)}
-                  className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-[#F2C9C6]"
-                >
-                  Read the full release <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-            ) : null}
-          </div>
-        </section>
-
-        <section className="mx-auto max-w-6xl border-b border-[#E8BCB9]/60 px-4 py-16 sm:px-6 lg:py-20">
-          <div className="flex items-center gap-2">
-            <TrendingUp className="h-5 w-5 text-[#AE445A]" />
-            <h2 className="text-2xl font-semibold text-[#432E54]">Trending topics</h2>
-          </div>
-          <p className="mt-1 text-sm text-[#6B5F7D]">Jump into categories that are active across the wire.</p>
-          <div className="mt-8 flex flex-wrap gap-2">
-            {trendingSlugs.map((slug) => {
-              const name = CATEGORY_OPTIONS.find((c) => c.slug === slug)?.name || slug
-              return (
-                <Link
-                  key={slug}
-                  href={`${taskRoute}?category=${encodeURIComponent(slug)}`}
-                  className="rounded-full border border-[#E8D8F0] bg-white px-4 py-2 text-sm font-medium text-[#432E54] shadow-sm transition hover:border-[#AE445A]/35 hover:bg-[#FFF5F4]"
-                >
-                  {name}
-                </Link>
-              )
-            })}
-          </div>
-        </section>
-
-        <section className="w-full border-t border-[#E8BCB9] bg-white/90">
-          <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-              <h2 className="text-3xl font-semibold text-[#432E54]">Browse news</h2>
-              <Link href={taskRoute} className="text-sm font-semibold text-[#AE445A] hover:underline">
-                See all releases →
+        {/* ── BROWSE NEWS ── */}
+        <section className="bg-white">
+          <div className="mx-auto max-w-7xl px-6 py-16 lg:py-20">
+            <div className="mb-10 flex items-end justify-between border-b-2 border-[#1a0f24] pb-3">
+              <h2 className="text-2xl font-black uppercase tracking-tight text-[#1a0f24]">Browse news</h2>
+              <Link href={taskRoute} className="flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-[#da4848] hover:underline">
+                See all releases <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
             {browse.length === 0 ? (
-              <p className="mt-8 text-sm text-[#6B5F7D]">The archive is ready for your first release—publish to populate this section.</p>
+              <p className="py-12 text-center text-sm text-[#5c4d6a]">
+                The archive is ready for your first release—publish to populate this section.
+              </p>
             ) : (
-              <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <ul className="grid gap-px bg-[#dcd3e4] sm:grid-cols-2 lg:grid-cols-4">
                 {browse.map((post) => (
-                  <li key={post.id}>
+                  <li key={post.id} className="bg-white">
                     <Link
                       href={buildPostUrl('mediaDistribution', post.slug)}
-                      className="block rounded-xl border border-[#E8D8F0] bg-white p-4 shadow-sm transition hover:border-[#AE445A]/30 hover:shadow-md"
+                      className="group flex h-full flex-col p-5 transition hover:bg-[#f6f3f8]"
                     >
-                      <p className="line-clamp-2 font-medium leading-snug text-[#432E54]">{post.title}</p>
+                      <span className="mb-2 text-[10px] font-bold uppercase tracking-wider text-[#da4848]">
+                        {getCategory(post)}
+                      </span>
+                      <p className="line-clamp-3 text-sm font-bold leading-snug text-[#1a0f24] transition group-hover:text-[#da4848]">
+                        {post.title}
+                      </p>
+                      <span className="mt-auto flex items-center gap-1 pt-4 text-[11px] font-semibold text-[#1a0f24]/40 transition group-hover:text-[#da4848]">
+                        Read <ArrowUpRight className="h-3 w-3" />
+                      </span>
                     </Link>
                   </li>
                 ))}
@@ -310,17 +330,70 @@ export async function HomePageOverride() {
           </div>
         </section>
 
-        <section className="border-t border-[#432E54]/20 bg-gradient-to-r from-[#4B4376] via-[#524580] to-[#5D528A] text-white">
-          <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:py-16">
-            <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+        {/* ── EDITORIAL STRIP ── */}
+        <section className="relative overflow-hidden" style={{ backgroundColor: '#1a0f24' }}>
+          <div className="absolute inset-0 z-0" style={{ backgroundColor: '#1a0f24' }} />
+          <Image
+            src={editorialImage}
+            alt=""
+            fill
+            className="object-cover opacity-15"
+            sizes="100vw"
+            style={{ zIndex: 1 }}
+          />
+          <div className="absolute inset-0" style={{ zIndex: 2, background: 'linear-gradient(90deg, #1a0f24 0%, rgba(45,26,58,0.97) 60%, rgba(54,6,77,0.85) 100%)' }} />
+          <div className="relative mx-auto max-w-7xl px-6 py-16 lg:py-20" style={{ zIndex: 3 }}>
+            <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
               <div>
-                <h2 className="text-2xl font-semibold sm:text-3xl">Receive monthly trending press wire and industry news</h2>
-                <p className="mt-3 text-sm text-white/75">No clutter—one concise digest with what moved markets and why it matters. Unsubscribe any time.</p>
+                <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.25em] text-[#da4848]">Why {SITE_CONFIG.name}</p>
+                <h2 className="text-3xl font-black leading-tight text-white sm:text-4xl">
+                  Editorial control rooms still matter.
+                </h2>
+                <p className="mt-4 text-sm leading-relaxed text-white/60">
+                  A press portal should feel like infrastructure—not a marketing theme. We designed spacing, type, and section rhythm for release-heavy teams who need clarity over decoration.
+                </p>
+                <Link
+                  href={taskRoute}
+                  className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#da4848] px-6 py-3 text-sm font-bold text-white shadow-lg shadow-[#da4848]/25 transition hover:bg-[#c23d3d]"
+                >
+                  Enter the newsroom <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+              <div className="grid grid-cols-2 gap-px bg-white/10">
+                {[
+                  { label: 'Wire-native format', desc: 'Datelines, quotes, and structured bodies.' },
+                  { label: 'Distribution metadata', desc: 'Tags and categories visible in every list view.' },
+                  { label: 'Context-aware search', desc: 'Tuned for corporate language, not social noise.' },
+                  { label: 'Your brand frame', desc: 'A distinct press identity, not a recycled blog.' },
+                ].map((item) => (
+                  <div key={item.label} className="bg-white/5 p-5">
+                    <p className="text-xs font-bold uppercase tracking-wide text-white">{item.label}</p>
+                    <p className="mt-1 text-xs leading-relaxed text-white/50">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── NEWSLETTER ── */}
+        <section className="border-t border-[#dcd3e4] bg-[#f6f3f8]">
+          <div className="mx-auto max-w-7xl px-6 py-14 lg:py-16">
+            <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+              <div>
+                <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.25em] text-[#da4848]">Newsletter</p>
+                <h2 className="text-2xl font-black uppercase tracking-tight text-[#1a0f24]">
+                  Receive monthly trending press wire and industry news
+                </h2>
+                <p className="mt-3 text-sm text-[#5c4d6a]">
+                  No clutter—one concise digest with what moved markets and why it matters. Unsubscribe any time.
+                </p>
               </div>
               <NewsletterCta />
             </div>
           </div>
         </section>
+
       </main>
       <Footer />
     </div>
